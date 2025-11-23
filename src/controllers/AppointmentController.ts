@@ -153,3 +153,31 @@ export const cancelAppointment = async (req: Request, res: Response) => {
         res.status(500).json({ message: 'Error al cancelar la cita.' });
     }
 };
+
+export const confirmAppointment = async (req: Request, res: Response)=>{
+    const { id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(400).json({ message: 'ID de cita inválido.' });
+    };
+    try {
+        const appointment = await Appointment.findByIdAndUpdate(
+            id,
+            { status: 'confirmed' }, // Cambia el estado a 'cancelled'
+            { new: true } // Devuelve el documento actualizado
+        );
+
+        if (!appointment) {
+            return res.status(404).json({ message: 'Cita no encontrada.' });
+        }
+
+        res.status(200).json({ 
+            message: 'Cita cancelada exitosamente.',
+            appointment 
+        });
+
+    } catch (error) {
+        console.error("Error al cancelar la cita:", error);
+        res.status(500).json({ message: 'Error al cancelar la cita.' });
+    };
+};

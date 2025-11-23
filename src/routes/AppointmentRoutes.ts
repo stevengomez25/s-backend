@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getAvailableSlots, createAppointment, getAllAppointments, cancelAppointment } from '../controllers/AppointmentController';
+import { getAvailableSlots, createAppointment, getAllAppointments, cancelAppointment, confirmAppointment } from '../controllers/AppointmentController';
 
 const router = Router();
 
@@ -18,5 +18,6 @@ router.post('/', createAppointment);
 // Rutas de entrenador/administrador (NUEVAS)
 router.get('/', getAllAppointments); // GET /api/appointments
 router.patch('/:id/cancel', cancelAppointment); // PATCH /api/appointments/:id/cancel
+router.patch('/:id/confirm',confirmAppointment);
 
 export default router;
