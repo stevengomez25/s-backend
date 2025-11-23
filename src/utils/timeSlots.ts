@@ -1,7 +1,7 @@
 // Define el horario de trabajo y la duración de la cita
 const WORKING_HOURS = {
-    START_HOUR: 9,  // 9:00 AM
-    END_HOUR: 17,   // 5:00 PM
+    START_HOUR: 6,  // 6:00 AM
+    END_HOUR: 20.5,   // 8:00 PM
 };
 
 const SLOT_DURATION_MINUTES = 30; // Slots de 30 minutos
